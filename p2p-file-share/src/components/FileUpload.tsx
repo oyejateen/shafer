@@ -9,9 +9,9 @@ const FileUpload: React.FC = () => {
   const [file, setFile] = useState<File | null>(null);
   const [shareLink, setShareLink] = useState<string | null>(null);
   const [roomId, setRoomId] = useState<string | null>(null);
-  const [peer, setPeer] = useState<SimplePeer.Instance | null>(null);
+  const [_peer, setPeer] = useState<SimplePeer.Instance | null>(null);
   const [isPeerActive, setIsPeerActive] = useState(false);
-  const [uploadProgress, setUploadProgress] = useState<number>(0);
+  const [_uploadProgress, setUploadProgress] = useState<number>(0);
 
   const onDrop = useCallback((acceptedFiles: File[]) => {
     if (acceptedFiles.length > 0) {
