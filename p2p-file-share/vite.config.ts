@@ -5,14 +5,18 @@ import { nodePolyfills } from 'vite-plugin-node-polyfills'
 export default defineConfig({
   plugins: [
     react(),
-    nodePolyfills({
-      globals: {
-        Buffer: true,
-        global: true,
-        process: true,
-      },
-    }),
+    nodePolyfills(),
   ],
+  build: {
+    rollupOptions: {
+      input: {
+        main: './index.html',
+      },
+    },
+    outDir: 'dist',
+    assetsDir: 'assets',
+    copyPublicDir: true,
+  },
   define: {
     global: 'globalThis',
   },
