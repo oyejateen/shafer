@@ -1,11 +1,5 @@
 import SimplePeer from 'simple-peer';
 
-interface FileChunk {
-  data: ArrayBuffer;
-  sequence: number;
-  last: boolean;
-}
-
 export const initiatePeerConnection = (isInitiator: boolean): SimplePeer.Instance => {
   console.log('Initiating peer connection, isInitiator:', isInitiator);
   return new SimplePeer({
