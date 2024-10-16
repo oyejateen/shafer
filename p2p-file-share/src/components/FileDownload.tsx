@@ -53,7 +53,7 @@ const FileDownload: React.FC<FileDownloadProps> = ({ fileId }) => {
       console.log('Waiting for file transfer to start');
     });
 
-    newPeer.on('data', (data) => {
+    newPeer.on('data', (_) => {
       console.log('Received data in downloader');
       receiveFile(newPeer, (progress) => {
         console.log(`Download progress: ${progress}%`);

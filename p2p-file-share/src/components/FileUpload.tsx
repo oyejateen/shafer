@@ -1,7 +1,6 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import SimplePeer from 'simple-peer';
 import { useDropzone } from 'react-dropzone';
-import { shortenUrl } from '../utils/urlShortener';
 import QRCode from './QRCode';
 import { initiatePeerConnection, sendFile } from '../utils/webrtc';
 import socket from '../utils/socket';
