@@ -7,6 +7,7 @@ import { v4 as uuidv4 } from 'uuid';
 import QRCode from 'react-qr-code';
 import { Button } from './ui/button';
 import { Card } from './ui/card';
+import { Progress } from './ui/progress';
 import { useSocket } from '@/hooks/use-socket';
 import { useToast } from '@/hooks/use-toast';
 import { FileTransfer } from '@/lib/file-transfer';
@@ -14,6 +15,7 @@ import { FileTransfer } from '@/lib/file-transfer';
 export default function FileUpload() {
   const [file, setFile] = useState<File | null>(null);
   const [shareLink, setShareLink] = useState<string>('');
+  const [progress, setProgress] = useState(0);
   const socket = useSocket();
   const { toast } = useToast();
 
@@ -35,6 +37,7 @@ export default function FileUpload() {
     
     try {
       setFile(file);
+      setProgress(0);
       const roomId = uuidv4();
       await FileTransfer.initiateSending(socket, file, roomId);
       
@@ -53,7 +56,7 @@ export default function FileUpload() {
         variant: 'destructive',
       });
     }
-  }, [socket, toast, MAX_FILE_SIZE]);
+  }, [socket, toast]);
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
@@ -114,6 +117,14 @@ export default function FileUpload() {
             </div>
           </div>
         </Card>
+      )}
+      {progress > 0 && progress < 100 && (
+        <div className="space-y-2">
+          <Progress value={progress} />
+          <p className="text-sm text-center text-gray-500">
+            {Math.round(progress)}%
+          </p>
+        </div>
       )}
     </div>
   );
