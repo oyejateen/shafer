@@ -6,7 +6,7 @@
     "dev": "next dev",
     "socket": "cross-env NEXT_TELEMETRY_DISABLED=1 NEXT_TRACE_DISABLED=1 ts-node --project tsconfig.server.json server.ts",
     "build": "next build",
-    "start": "cross-env NODE_ENV=production NEXT_TELEMETRY_DISABLED=1 NEXT_TRACE_DISABLED=1 ts-node --project tsconfig.server.json server.ts"
+    "start": "next start"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",
