@@ -20,15 +20,13 @@ class SocketClient {
     if (!this.socket || !this.socket.connected) {
       const socketUrl = process.env.NEXT_PUBLIC_SOCKET_URL || 'http://localhost:3001';
       
-      // Use WebSocket transport only
       this.socket = io(socketUrl, {
-        path: '/api/socket',
+        path: '/socket',
         autoConnect: false,
         reconnection: true,
         reconnectionAttempts: 5,
         reconnectionDelay: 1000,
         transports: ['websocket'],
-        upgrade: false
       });
 
       this.setupSocketHandlers();
@@ -55,13 +53,6 @@ class SocketClient {
     this.socket.on('disconnect', (reason) => {
       console.log('Socket disconnected:', reason);
     });
-
-    // Cleanup on page unload
-    if (typeof window !== 'undefined') {
-      window.addEventListener('beforeunload', () => {
-        this.disconnect();
-      });
-    }
   }
 
   public getSocket(): Socket<FileEventMap> | null {
