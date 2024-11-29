@@ -53,7 +53,7 @@ export default function FileUpload() {
         variant: 'destructive',
       });
     }
-  }, [socket, toast]);
+  }, [socket, toast, MAX_FILE_SIZE]);
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
